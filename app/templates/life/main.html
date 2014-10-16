@@ -1,22 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>THe Game of Life</title>
-</head>
-<body>
-<form id="controlsForm" method="post">
-    <div id="runDiv">
-        <button id="resetButton" type="button">Stop/Edit</button>
-        <button id="runButton" type="button">Run</button>
+{% extends "bootstrap/base.html" %}
+{% block title %}The Game of Life{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <form id="controlsForm" method="post" class="form-horizontal ">
+                <div class="span1">
+                    <div id="runDiv" class="control-group btn-group">
+                        <button id="resetButton" type="button" class="btn">Stop/Edit</button>
+                        <button id="runButton" type="button" class="btn">Run</button>
+                    </div>
+                </div>
+                <div class="span2">
+                    <div id="speedSliderDiv" class="control-group">
+                        <label for="speedSlider" class="control-label">Speed</label>
+                        <input id="speedSlider" type="range" step="1" min="0" max="10" value="1" class="input-sm">
+                    </div>
+                    <div id="scaleSliderDiv" class="control-group">
+                        <label for="scaleSlider" class="control-label">Zoom</label>
+                        <input id="scaleSlider" type="range" step="1" min="1" max="100" value="1" class="input-sm">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <canvas id="myCanvas" width="400" height="300">No canvas for you. Go upgrade your browser and then come back.
+        </canvas>
     </div>
-    <div id="speedSliderDiv">
-        <label for="speedSlider">Speed</label><input id="speedSlider" type="range" step="1" min="0" max="10" value="1">
-    </div>
-    <div id="scaleSliderDiv">
-        <label for="scaleSlider">Zoom</label><input id="scaleSlider" type="range" step="1" min="1" max="100" value="1">
-    </div>
-</form>
-<canvas id="myCanvas" width="400" height="300">No canvas for you. Go upgrade your browser and then come back.</canvas>
-</body>
-</html>
+    <script>
+        window.onload = function () {
+            var theCanvas = document.getElementById("myCanvas");
+            var context = theCanvas.getContext("2d");
+            context.fillStyle = "#80FF80";
+            context.fillRect(0, 0, 400, 300);
+        };
+    </script>
+{% endblock %}
