@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+    Error 404: Page Not Found. Sad, isn't it?
+    {% if error %}
+    <br>
+        {{ error }}
+    {% endif %}
+{% endblock %}

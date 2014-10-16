@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{{ super() }}
+<div id="content">
+    <div>
+    Home. SweetHome.
+    </div>
+    <div>
+    {{ moment.lang('uk') }}
+    {{ moment(current_time).format('LLL') }}
+    </div>
+    <div>
+    That was {{ moment(current_time).fromNow(refresh=True) }}
+    </div>
+</div>
+{% endblock %}

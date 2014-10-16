@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+    Error 500: Server Error. It's simply tragic, and I'm not exagerrating.
+        {% if error %}
+    <br>
+        {{ error }}
+    {% endif %}
+{% endblock %}
