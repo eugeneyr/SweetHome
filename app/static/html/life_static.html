@@ -1,10 +1,15 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}The Game of Life{% endblock %}
-{% block scripts %}
-{{ super() }}
-{% endblock %}
-{% block content %}
-{#    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/angular/angular.js') }}"/>#}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Game of Life</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    
+    
+
     <div ng-app="lifeApp">
     <div class="container" ng-controller="CanvasController">
         <div class="row">
@@ -34,23 +39,32 @@
 </div> <!-- lifeApp root div -->
 <script type="text/javascript">
     alert('life is life');
-{#    var lifeAppModule = angular.module('lifeApp', []);#}
-{#    lifeAppModule.controller('CanvasController', function($scope) {#}
-{#            var theCanvas = document.getElementById("myCanvas");#}
-{#            var context = theCanvas.getContext("2d");#}
-{#            context.fillStyle = "#00FF80";#}
-{#            context.fillRect(0, 0, 400, 300);#}
-{#        //alert('See me');#}
-{#    });#}
+
+
+
+
+
+
+
+
 //alert('See me 2');
 </script>
 
-{#    <script>#}
-{#        window.onload = function () {#}
-{#            var theCanvas = document.getElementById("myCanvas");#}
-{#            var context = theCanvas.getContext("2d");#}
-{#            context.fillStyle = "#80FF80";#}
-{#            context.fillRect(0, 0, 400, 300);#}
-{#        };#}
-{#    </script>#}
-{% endblock %}
+
+
+
+
+
+
+
+
+
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
+
