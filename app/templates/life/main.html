@@ -1,56 +1,73 @@
 {% extends "bootstrap/base.html" %}
 {% block title %}The Game of Life{% endblock %}
 {% block scripts %}
-{{ super() }}
+    {{ super() }}
+{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/lib/angular/angular.js') }}"></script>
 {% endblock %}
 {% block content %}
-{#    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/angular/angular.js') }}"/>#}
     <div ng-app="lifeApp">
-    <div class="container" ng-controller="CanvasController">
-        <div class="row">
-            <form id="controlsForm" method="post" class="form-horizontal ">
-                <div class="span1">
-                    <div id="runDiv" class="control-group btn-group">
-                        <button id="resetButton" type="button" class="btn">Stop/Edit</button>
-                        <button id="runButton" type="button" class="btn">Run</button>
+        <div class="container" ng-controller="CanvasController">
+            <div class="row">
+                <form id="controlsForm" method="post" class="form-horizontal ">
+                    <div class="span1">
+                        <div id="runDiv" class="control-group btn-group">
+                            <button id="resetButton" type="button" class="btn">Stop/Edit</button>
+                            <button id="runButton" type="button" class="btn">Run</button>
+                        </div>
                     </div>
-                </div>
-                <div class="span2">
-                    <div id="speedSliderDiv" class="control-group">
-                        <label for="speedSlider" class="control-label">Speed</label>
-                        <input id="speedSlider" type="range" step="1" min="0" max="10" value="1" class="input-sm">
+                    <div class="span2">
+                        <div id="speedSliderDiv" class="control-group">
+                            <label for="speedSlider" class="control-label">Speed</label>
+                            <input id="speedSlider" type="range" ng-model="speed" step="1" min="0" max="10" value="1"
+                                   class="input-sm">
+                        </div>
+                        <div id="scaleSliderDiv" class="control-group">
+                            <label for="scaleSlider" class="control-label">Zoom</label>
+                            <input id="scaleSlider" ng-model="scale" type="range" step="1" min="1" max="50" value="1"
+                                   class="input-sm">
+                        </div>
                     </div>
-                    <div id="scaleSliderDiv" class="control-group">
-                        <label for="scaleSlider" class="control-label">Zoom</label>
-                        <input id="scaleSlider" type="range" step="1" min="1" max="100" value="1" class="input-sm">
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
+{#            <div class="row">#}
+{#                <div class="span1">Current speed:#}
+{#                    <div ng-bind="speed"></div>#}
+{#                </div>#}
+{#                <div class="span2">Current scale:#}
+{#                    <div ng-bind="scale"></div>#}
+{#                </div>#}
+{#            </div>#}
+            <canvas id="myCanvas" width="640" height="480">No canvas for you. Go upgrade your browser and then come
+                back.
+            </canvas>
         </div>
-        <canvas id="myCanvas" width="400" height="300">No canvas for you. Go upgrade your browser and then come back.
-        </canvas>
-    </div>
+    </div> <!-- lifeApp root div -->
+    <script type="text/javascript">
+        //alert('life is life');
+        function colorCanvas() {
+            var theCanvas = document.getElementById("myCanvas");
+            var context = theCanvas.getContext("2d");
+            context.fillStyle = "#00FFFF";
+            context.fillRect(0, 0, 640, 480);
+        }
+        var lifeAppModule = angular.module('lifeApp', []);
+        lifeAppModule.controller('CanvasController', function ($scope) {
+            colorCanvas();
+            $scope.speed = 1;
+            $scope.scale = 1;
 
-</div> <!-- lifeApp root div -->
-<script type="text/javascript">
-    alert('life is life');
-{#    var lifeAppModule = angular.module('lifeApp', []);#}
-{#    lifeAppModule.controller('CanvasController', function($scope) {#}
-{#            var theCanvas = document.getElementById("myCanvas");#}
-{#            var context = theCanvas.getContext("2d");#}
-{#            context.fillStyle = "#00FF80";#}
-{#            context.fillRect(0, 0, 400, 300);#}
-{#        //alert('See me');#}
-{#    });#}
-//alert('See me 2');
-</script>
-
-{#    <script>#}
-{#        window.onload = function () {#}
-{#            var theCanvas = document.getElementById("myCanvas");#}
-{#            var context = theCanvas.getContext("2d");#}
-{#            context.fillStyle = "#80FF80";#}
-{#            context.fillRect(0, 0, 400, 300);#}
-{#        };#}
-{#    </script>#}
+            //alert('See me');
+        });
+    </script>
+    {#    <script>#}
+    {#        window.onload = function () {#}
+    {#            var theCanvas = document.getElementById("myCanvas");#}
+    {#            var context = theCanvas.getContext("2d");#}
+    {#            context.fillStyle = "#80FF80";#}
+    {#            context.fillRect(0, 0, 400, 300);#}
+    {#        };#}
+    {#    </script>#}
 {% endblock %}

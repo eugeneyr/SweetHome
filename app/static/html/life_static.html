@@ -4,13 +4,10 @@
     <title>The Game of Life</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap/bootstrap.css" rel="stylesheet" media="screen">
+    <script src="/static/js/lib/angular/angular.js"></script>
   </head>
-  <body>
-    
-    
-
-    <div ng-app="lifeApp">
+  <body ng-app="lifeApp">
     <div class="container" ng-controller="CanvasController">
         <div class="row">
             <form id="controlsForm" method="post" class="form-horizontal ">
@@ -35,36 +32,19 @@
         <canvas id="myCanvas" width="400" height="300">No canvas for you. Go upgrade your browser and then come back.
         </canvas>
     </div>
-
-</div> <!-- lifeApp root div -->
 <script type="text/javascript">
-    alert('life is life');
-
-
-
-
-
-
-
-
-//alert('See me 2');
+//    alert('life is life');
+    var lifeAppModule = angular.module('lifeApp', []);
+    lifeAppModule.controller('CanvasController', function($scope) {
+//            var theCanvas = document.getElementById("myCanvas");
+//            var context = theCanvas.getContext("2d");
+//            context.fillStyle = "#00FF80";
+//            context.fillRect(0, 0, 400, 300);
+            alert('See me');
+    });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+    <script src="/static/js/lib/jquery/jquery-1.11.1.js"></script>
+    <script src="/static/js/lib/bootstrap/bootstrap.js"></script>
   </body>
 </html>
 
