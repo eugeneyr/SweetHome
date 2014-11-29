@@ -20,3 +20,7 @@ window.requestAnimFrame = (function () {
     requestAnimFrame(animloop);
     render();
 })();
+
+function registerRenderer(renderFunc) {
+    registeredRenderers.push(renderFunc);
+}

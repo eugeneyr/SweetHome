@@ -6,6 +6,7 @@
 {% block head %}
     {{ super() }}
     <script src="{{ url_for('static', filename='js/lib/angular/angular.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modules/life/life.js') }}"></script>
 {% endblock %}
 {% block content %}
     <div ng-app="lifeApp">
@@ -53,11 +54,12 @@
             context.fillStyle = "#00FFFF";
             context.fillRect(0, 0, 640, 480);
         }
-        var lifeAppModule = angular.module('lifeApp', []);
-        lifeAppModule.controller('CanvasController', function ($scope) {
+        var lifeAppModule = angular.module('lifeApp', ['LifeService']);
+        lifeAppModule.controller('CanvasController', function ($scope, Cells) {
             colorCanvas();
             $scope.speed = 1;
             $scope.scale = 1;
+            alert("Number of cells: " + Cells.getCells().length);
 
             //alert('See me');
         });
