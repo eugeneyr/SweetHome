@@ -34,7 +34,7 @@ class Edge:
 
 
     def __eq__(self, other):
-        return (other != None and isinstance(other, Edge) and
+        return (other is not None and isinstance(other, Edge) and
             ((other.v1 == self.v1 and other.v2 == self.v2) or (other.v1 == self.v2 and other.v2 == self.v1)))
 
 
@@ -141,7 +141,7 @@ def color_widthsearch(graph, ):
 
 
 def permutations(l):
-    if l == None or len(l) <= 1:
+    if l is None or len(l) <= 1:
         return l
     if len(l) == 2:
         return [l, list(reversed(l))]
