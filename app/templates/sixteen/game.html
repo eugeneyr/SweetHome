@@ -1,0 +1,52 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}The Game of Sixteen{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/modules/sixteen/game.js') }}"></script>
+{% endblock %}
+{% block content %}
+    <div ng-app="lifeApp">
+        <div class="container" ng-controller="CanvasController">
+            <div class="row">
+                <form id="controlsForm" method="post" class="form-horizontal ">
+                    <div class="span4">
+                        <div id="runDiv" class="control-group btn-group">
+                            <button id="leftButton" type="button" class="btn">Left</button>
+                            <button id="rightButton" type="button" class="btn">Right</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row" id="row_0">
+                <div class="span1" id="tile_0_0"></div>
+                <div class="span1" id="tile_0_1"></div>
+                <div class="span1" id="tile_0_2"></div>
+                <div class="span1" id="tile_0_3"></div>
+            </div>
+            <div class="row" id="row_1">
+                <div class="span1" id="tile_1_0"></div>
+                <div class="span1" id="tile_1_1"></div>
+                <div class="span1" id="tile_1_2"></div>
+                <div class="span1" id="tile_1_3"></div>
+            </div>
+            <div class="row" id="row_2">
+                <div class="span1" id="tile_2_0"></div>
+                <div class="span1" id="tile_2_1"></div>
+                <div class="span1" id="tile_2_2"></div>
+                <div class="span1" id="tile_2_3"></div>
+            </div>
+            <div class="row" id="row_3">
+                <div class="span1" id="tile_3_0"></div>
+                <div class="span1" id="tile_3_1"></div>
+                <div class="span1" id="tile_3_2"></div>
+                <div class="span1" id="tile_3_3"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        alert("Heeere's Johnny!");
+    </script>
+{% endblock %}
