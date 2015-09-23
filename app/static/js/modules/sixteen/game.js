@@ -37,6 +37,16 @@ function Board() {
     return this;
 }
 
+
+Board.prototype.clear = function () {
+    this.board = [
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null]
+    ];
+};
+
 Board.prototype.mush = function (direction) {
     switch (direction) {
         case Direction.RIGHT:
@@ -59,14 +69,14 @@ Board.prototype.mushRight = function () {
     for (var j = 0; j < this.height; j++) {
         var empty = 3;
         while (empty >= 0) {
-            while (empty >= 0 && !this.board[empty][j]) {
+            while (empty >= 0 && !this.board[j][empty]) {
                 empty--;
             }
             if (empty > 0) {
                 var filled = empty - 1;
                 // drag it to the left
-                this.board[empty][j] = this.board[filled][j];
-                this.board[filled][j] = null;
+                this.board[j][empty--] = this.board[j][filled];
+                this.board[j][filled] = null;
             }
         }
     }
@@ -76,48 +86,48 @@ Board.prototype.mushLeft = function () {
     for (var j = 0; j < this.height; j++) {
         var empty = 0;
         while (empty < 4) {
-            while (empty < 4 && !this.board[empty][j]) {
+            while (empty < 4 && !this.board[j][empty]) {
                 empty++;
             }
             if (empty < 3) {
                 var filled = empty + 1;
                 // drag it to the left
-                this.board[empty][j] = this.board[filled][j];
-                this.board[filled][j] = null;
+                this.board[j][empty++] = this.board[filled];
+                this.board[j][filled] = null;
             }
         }
     }
 };
 
 Board.prototype.mushUp = function () {
-    for (var i = 0; i < this.width; j++) {
+    for (var i = 0; i < this.width; i++) {
         var empty = 0;
         while (empty < 4) {
-            while (empty < 4 && !this.board[i][empty]) {
+            while (empty < 4 && !this.board[empty][i]) {
                 empty++;
             }
             if (empty < 3) {
                 var filled = empty + 1;
                 // drag it to the left
-                this.board[i][empty] = this.board[i][filled];
-                this.board[i][filled] = null;
+                this.board[empty++][i] = this.board[filled][i];
+                this.board[filled][i] = null;
             }
         }
     }
 };
 
 Board.prototype.mushDown = function () {
-    for (var i = 0; i < this.width; j++) {
+    for (var i = 0; i < this.width; i++) {
         var empty = 3;
         while (empty >= 0) {
-            while (empty >= 0 && !this.board[i][empty]) {
+            while (empty >= 0 && !this.board[empty][i]) {
                 empty--;
             }
             if (empty > 1) {
                 var filled = empty - 1;
                 // drag it to the left
-                this.board[i][empty] = this.board[i][filled];
-                this.board[i][filled] = null;
+                this.board[empty--][i] = this.board[filled][i];
+                this.board[filled][i] = null;
             }
         }
     }
@@ -129,22 +139,23 @@ Board.prototype.draw = function () {
         for (var j = 0; j < this.height; j++) {
             var elem = document.getElementById('tile_' + i + '_' + j);
             if (elem) {
-                elem.innerHTML = this.board[i][j] ? this.board[i][j].value : '';
+                elem.innerHTML = this.board[j][i] ? this.board[j][i].value : '&nbsp;';
             }
         }
     }
 };
 
-Board.prototype.throwDice = function () {
+Board.prototype.rollDice = function () {
     var emptyCells = [];
     for (var i = 0; i < this.width; i++) {
         for (var j = 0; j < this.height; j++) {
-            if (!this.board[i][j]) {
+            if (!this.board[j][i]) {
                 emptyCells[emptyCells.length] = {x: i, y: j};
             }
         }
     }
-    var pos = Math.round(Math.random() * emptyCells.length);
+    console.log(emptyCells);
+    var pos = Math.floor(Math.random() * emptyCells.length);
     var cell = emptyCells[pos];
-    this.board[cell.x][cell.y] = new Tile(2);
+    this.board[cell.y][cell.x] = new Tile(2);
 };

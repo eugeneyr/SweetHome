@@ -13,42 +13,105 @@
             <div class="row">
                 <form id="controlsForm" method="post" class="form-horizontal ">
                     <div class="span4">
-                        <div id="runDiv" class="control-group btn-group">
-                            <button id="leftButton" type="button" class="btn">Left</button>
-                            <button id="rightButton" type="button" class="btn">Right</button>
+                        <div id="controlDiv" class="control-group btn-group">
+                            <button id="leftButton" type="button" class="btn" onclick="doMushLeft()">Left</button>
+                            <button id="rightButton" type="button" class="btn" onclick="doMushRight()">Right</button>
+                            <button id="upButton" type="button" class="btn" onclick="doMushUp()">Up</button>
+                            <button id="downButton" type="button" class="btn" onclick="doMushDown()">Down</button>
+                            <button id="rollButton" type="button" class="btn" onclick="doRollDice();">Roll the Dice
+                            </button>
+
+                            <button id="clearButton" type="button" class="btn" onclick="doClear();">Clear</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="row" id="row_0">
-                <div class="span1" id="tile_0_0"></div>
-                <div class="span1" id="tile_0_1"></div>
-                <div class="span1" id="tile_0_2"></div>
-                <div class="span1" id="tile_0_3"></div>
-            </div>
-            <div class="row" id="row_1">
-                <div class="span1" id="tile_1_0"></div>
-                <div class="span1" id="tile_1_1"></div>
-                <div class="span1" id="tile_1_2"></div>
-                <div class="span1" id="tile_1_3"></div>
-            </div>
-            <div class="row" id="row_2">
-                <div class="span1" id="tile_2_0"></div>
-                <div class="span1" id="tile_2_1"></div>
-                <div class="span1" id="tile_2_2"></div>
-                <div class="span1" id="tile_2_3"></div>
-            </div>
-            <div class="row" id="row_3">
-                <div class="span1" id="tile_3_0"></div>
-                <div class="span1" id="tile_3_1"></div>
-                <div class="span1" id="tile_3_2"></div>
-                <div class="span1" id="tile_3_3"></div>
-            </div>
+            {#            <div class="row" id="row_0">#}
+            {#                <div class="span1" id="tile_0_0"></div>#}
+            {#                <div class="span1" id="tile_0_1"></div>#}
+            {#                <div class="span1" id="tile_0_2"></div>#}
+            {#                <div class="span1" id="tile_0_3"></div>#}
+            {#            </div>#}
+            {#            <div class="row" id="row_1">#}
+            {#                <div class="span1" id="tile_1_0"></div>#}
+            {#                <div class="span1" id="tile_1_1"></div>#}
+            {#                <div class="span1" id="tile_1_2"></div>#}
+            {#                <div class="span1" id="tile_1_3"></div>#}
+            {#            </div>#}
+            {#            <div class="row" id="row_2">#}
+            {#                <div class="span1" id="tile_2_0"></div>#}
+            {#                <div class="span1" id="tile_2_1"></div>#}
+            {#                <div class="span1" id="tile_2_2"></div>#}
+            {#                <div class="span1" id="tile_2_3"></div>#}
+            {#            </div>#}
+            {#            <div class="row" id="row_3">#}
+            {#                <div class="span1" id="tile_3_0"></div>#}
+            {#                <div class="span1" id="tile_3_1"></div>#}
+            {#                <div class="span1" id="tile_3_2"></div>#}
+            {#                <div class="span1" id="tile_3_3"></div>#}
+            {#            </div>#}
+            <table id="board" border="1">
+                <tr>
+                    <td id="tile_0_0">&nbsp;</td>
+                    <td id="tile_0_1">&nbsp;</td>
+                    <td id="tile_0_2">&nbsp;</td>
+                    <td id="tile_0_3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="tile_1_0">&nbsp;</td>
+                    <td id="tile_1_1">&nbsp;</td>
+                    <td id="tile_1_2">&nbsp;</td>
+                    <td id="tile_1_3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="tile_2_0">&nbsp;</td>
+                    <td id="tile_2_1">&nbsp;</td>
+                    <td id="tile_2_2">&nbsp;</td>
+                    <td id="tile_2_3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="tile_3_0"></td>
+                    <td id="tile_3_1"></td>
+                    <td id="tile_3_2"></td>
+                    <td id="tile_3_3"></td>
+                </tr>
+            </table>
         </div>
     </div>
     <script type="text/javascript">
         var board = new Board();
-        board.throwDice();
+        board.rollDice();
         board.draw();
+
+        function doClear() {
+            board.clear();
+            board.draw();
+        }
+
+        function doRollDice() {
+            board.rollDice();
+            board.draw();
+        }
+
+        function doMushLeft() {
+            board.mushLeft();
+            board.draw();
+        }
+
+        function doMushRight() {
+            board.mushRight();
+            board.draw();
+        }
+
+        function doMushUp() {
+            board.mushUp();
+            board.draw();
+        }
+
+        function doMushDown() {
+            board.mushDown();
+            board.draw();
+        }
+
     </script>
 {% endblock %}
