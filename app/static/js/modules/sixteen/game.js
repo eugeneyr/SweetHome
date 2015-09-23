@@ -65,18 +65,33 @@ Board.prototype.mush = function (direction) {
 };
 
 
-Board.prototype.mushRight = function () {
+Board.prototype.mushDown = function () {
     for (var j = 0; j < this.height; j++) {
         var empty = 3;
-        while (empty >= 0) {
-            while (empty >= 0 && !this.board[j][empty]) {
+        while (1) {
+            while (empty >= 0) {
+                if (!this.board[j][empty]) {
+                    break;
+                }
                 empty--;
             }
             if (empty > 0) {
                 var filled = empty - 1;
-                // drag it to the left
-                this.board[j][empty--] = this.board[j][filled];
-                this.board[j][filled] = null;
+                while (filled >= 0) {
+                    if (this.board[j][filled]) {
+                        break;
+                    }
+                    filled--;
+                }
+                if (filled >= 0) {
+                    // drag it to the left
+                    this.board[j][empty] = this.board[j][filled];
+                    this.board[j][filled] = null;
+                }
+                empty = filled - 1;
+            }
+            if (empty < 0) {
+                break;
             }
         }
     }
@@ -102,32 +117,62 @@ Board.prototype.mushLeft = function () {
 Board.prototype.mushUp = function () {
     for (var i = 0; i < this.width; i++) {
         var empty = 0;
-        while (empty < 4) {
-            while (empty < 4 && !this.board[empty][i]) {
+        while (1) {
+            while (empty < 4) {
+                if (!this.board[j][empty]) {
+                    break;
+                }
                 empty++;
             }
             if (empty < 3) {
                 var filled = empty + 1;
-                // drag it to the left
-                this.board[empty++][i] = this.board[filled][i];
-                this.board[filled][i] = null;
+                while (filled < 4) {
+                    if (this.board[j][filled]) {
+                        break;
+                    }
+                    filled++;
+                }
+                if (filled < 4) {
+                    // drag it to the left
+                    this.board[j][empty] = this.board[j][filled];
+                    this.board[j][filled] = null;
+                }
+                empty = filled + 1;
+            }
+            if (empty > 3) {
+                break;
             }
         }
     }
 };
 
-Board.prototype.mushDown = function () {
+Board.prototype.mushRight = function () {
     for (var i = 0; i < this.width; i++) {
         var empty = 3;
-        while (empty >= 0) {
-            while (empty >= 0 && !this.board[empty][i]) {
+        while (1) {
+            while (empty >= 0) {
+                if (!this.board[empty][i]) {
+                    break;
+                }
                 empty--;
             }
-            if (empty > 1) {
+            if (empty > 0) {
                 var filled = empty - 1;
-                // drag it to the left
-                this.board[empty--][i] = this.board[filled][i];
-                this.board[filled][i] = null;
+                while (filled >= 0) {
+                    if (this.board[filled][i]) {
+                        break;
+                    }
+                    filled--;
+                }
+                if (filled >= 0) {
+                    // drag it to the left
+                    this.board[empty][i] = this.board[filled][i];
+                    this.board[filled][i] = null;
+                }
+                empty = filled - 1;
+            }
+            if (empty < 0) {
+                break;
             }
         }
     }
